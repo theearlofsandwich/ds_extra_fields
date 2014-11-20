@@ -1,0 +1,72 @@
+<?php
+function ds_extra_fields_ds_field_theme_functions_info() {
+  return array(
+    'theme_ds_field_row_pad' => t('Row wrap with padding'),
+    'theme_ds_field_row' => t('Row wrap')
+  );
+}
+
+
+/**
+ * Provide Row and column for the field.
+ */
+function theme_ds_field_row_pad($variables) {
+  $output = '';
+  $config = $variables['ds-config'];
+  $classes = isset($config['classes']) ? ' ' . $config['classes'] : '';
+
+  // Add a simple wrapper.
+  $output .= '<div class="row"><div class="innerrow">';
+
+  $output .= '<div class="field field-name-' . strtr($variables['element']['#field_name'], '_', '-') . $classes . '">';
+
+  // Render the label.
+  if (!$variables['label_hidden']) {
+    $output .= '<div class="label-' . $variables['element']['#label_display'] . '">' . $variables['label'];
+    if (!isset($config['lb-col'])) {
+      $output .= ':&nbsp;';
+    }
+    $output .= '</div>';
+  }
+
+  // Render the items.
+  foreach ($variables['items'] as $delta => $item) {
+    $output .= drupal_render($item);
+  }
+  $output .="</div>";
+  $output .="</div></div>";
+
+  return $output;
+}
+
+/**
+ * Provide Row and column for the field.
+ */
+function theme_ds_field_row($variables) {
+  $output = '';
+  $config = $variables['ds-config'];
+  $classes = isset($config['classes']) ? ' ' . $config['classes'] : '';
+
+  // Add a simple wrapper.
+  $output .= '<div class="row">';
+
+  $output .= '<div class="field field-name-' . strtr($variables['element']['#field_name'], '_', '-') . $classes . '">';
+
+  // Render the label.
+  if (!$variables['label_hidden']) {
+    $output .= '<div class="label-' . $variables['element']['#label_display'] . '">' . $variables['label'];
+    if (!isset($config['lb-col'])) {
+      $output .= ':&nbsp;';
+    }
+    $output .= '</div>';
+  }
+
+  // Render the items.
+  foreach ($variables['items'] as $delta => $item) {
+    $output .= drupal_render($item);
+  }
+  $output .="</div>";
+  $output .="</div>";
+
+  return $output;
+}

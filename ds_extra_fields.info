@@ -1,0 +1,7 @@
+name = Display Suite extra fields
+description = "Custom Display Suite extra fields"
+core = 7.x
+files[] = ds_extra_fields.module
+
+project = "ds_extra_fields"
+version = "7.x-1.0"
